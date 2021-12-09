@@ -10,6 +10,7 @@ const querystring = require('querystring');
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 const { Genre } = require("./models");
+const { Rap } = require("./models");
 const SECRET_SESSION = process.env.SECRET_SESSION;
 console.log(SECRET_SESSION);
 
@@ -59,6 +60,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
 // controllers
 app.use('/auth', require('./controllers/auth'));
 app.use('/genre', require('./controllers/genre'));
+app.use('/rap', require('./controllers/rap'));
 
 app.get('/test-albums', function (req, res) {
   // Make a AXIOS call (POST) to submit CLIENT_ID and CLIENT_SECRET
@@ -111,16 +113,16 @@ app.get('/test-albums', function (req, res) {
 });
 
 
-// Genre.create({
-//   genre: 'Pop'
-// })
-//   .then(function (newGenre) {
-//     console.log("New genre added");
-//     console.log(newGenre.toJSON());
-//   })
-//   .catch(function (error) {
-//     console.log("Error creating genre", error);
-//   });
+Rap.create({
+  playlists: 'DOPE.'
+})
+  .then(function (newGenre) {
+    console.log("New genre added");
+    console.log(newGenre.toJSON());
+  })
+  .catch(function (error) {
+    console.log("Error creating genre", error);
+  });
 
 
 const PORT = process.env.PORT || 3000;

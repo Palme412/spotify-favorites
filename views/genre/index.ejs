@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cards List - Bulma Templates</title>
+    <title>Genres</title>
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
     <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -15,21 +15,7 @@
 <body>
 
     <!-- START NAV -->
-    <!-- <nav class="navbar">
-        <div class="container">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="#">
-                    <img src="https://cdn.emk.dev/templates/bulma-logo-light.png" alt="Logo">
-                </a>
-                <span class="navbar-burger burger" data-target="navbarMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-            </div>
 
-        </div>
-    </nav> -->
     <!-- END NAV -->
 
     <div class="container">
@@ -39,36 +25,28 @@
                     <h1 class="title" style="color: ghostwhite;">Pick Your Genre</h1><br>
                 </div>
             </div>
-            <div id="app" class="row columns is-multiline">
-                <div v-for="card in cardData" key="card.id" class="column is-4">
-                    <div class="card large">
-                        <div class="card-image">
-                            <figure class="image is-16by9">
-                                <img :src="card.image" alt="Image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-left">
-                                    <figure class="image is-48x48">
-                                        <img :src="card.avatar" alt="Image">
-                                    </figure>
-                                </div>
-                                <div class="media-content">
-                                    <p class="title is-4 no-padding">{{card.user.title}}</p>
-                                    <p>
-                                        <span class="title is-6">
-                                            <a :href=`http://twitter.com/${card.user.handle}`> {{card.user.handle}} </a>
-                                        </span>
-                                    </p>
-                                    <p class="subtitle is-6">{{card.user.title}}</p>
-                                </div>
-                            </div>
-                            <div class="content">
-                                {{card.content}}
-                                <div class="background-icon"><span class="icon-twitter"></span></div>
-                            </div>
-                        </div>
+            <div class="tile is-ancestor">
+                <div class="tile is-4 is-vertical is-parent">
+                    <div class="tile is-child box">
+                        <p class="title">One</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu
+                            pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat
+                            facilisis.</p>
+                    </div>
+                    <div class="tile is-child box">
+                        <p class="title">Two</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu
+                            pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat
+                            facilisis.</p>
+                    </div>
+                </div>
+                <div class="tile is-parent">
+                    <div class="tile is-child box">
+                        <p class="title">Three</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar,
+                            at pulvinar felis blandit. Vestibulum volutpat tellus diam, consequat gravida libero rhoncus
+                            ut. Morbi maximus, leo sit amet vehicula eleifend, nunc dui porta orci, quis semper odio
+                            felis ut quam.</p>
                     </div>
                 </div>
             </div>
