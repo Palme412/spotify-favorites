@@ -13,6 +13,14 @@ app.use(methodOverride('_method'));
 const SECRET_SESSION = process.env.SECRET_SESSION;
 console.log(SECRET_SESSION);
 
+// code for Spotify API
+const axios = require('axios');
+let buff = new Buffer.from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`);
+let authKey = buff.toString('base64');
+let headers = {
+  Authorization: `Basic ${authKey}`
+}
+
 app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));
@@ -49,7 +57,59 @@ app.get('/profile', isLoggedIn, (req, res) => {
 
 // controllers
 app.use('/auth', require('./controllers/auth'));
-app.use(require('./controllers/api'));
+// app.use(require('./controllers/api'));
+
+app.get('/test-albums', function (req, res) {
+  // Make a AXIOS call (POST) to submit CLIENT_ID and CLIENT_SECRET
+  axios.post('https://accounts.spotify.com/api/token',
+    querystring.stringify({ grant_type: 'client_credentials' }),
+    {
+      headers: headers
+    })
+    .then(function (response) {
+      token = response.data.access_token
+      console.log('TOKEN', token);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+      // make another axios (GET) to get the data 
+      axios.get('https://api.spotify.com/v1/playlists/37i9dQZF1DX0XUsuxWHRQd', config)
+        .then(function (response) {
+          console.log('DATA YAY!', response.data);
+          res.json({ data: response.data });
+          let alldata = response.data;
+          // console.log(alldata);
+          tracksArr = alldata.tracks.items;
+          // console.log(tracksArr)
+
+          for (let i = 0; i < tracksArr.length; i++) {
+            let artistsArrs = tracksArr[i].track.album.artists;
+
+            for (let j in artistsArrs) {
+              let artistDetails = artistsArrs[j];
+              artistName = artistDetails.name;
+              artistIDs = artistDetails.id;
+              // console.log(artistName);
+              console.log(artistIDs);
+            }
+
+          }
+          // res.render('whateverpage', { data: response.data });
+        })
+        .catch(err => {
+          console.log('ERROR', err);
+        });
+
+
+    })
+    .catch(function (err) {
+      console.log("error", err.message)
+    })
+});
+
+
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
