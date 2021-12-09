@@ -9,12 +9,13 @@ const isLoggedIn = require('./middleware/isLoggedIn');
 const querystring = require('querystring');
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
-
+const { Genre } = require("./models");
 const SECRET_SESSION = process.env.SECRET_SESSION;
 console.log(SECRET_SESSION);
 
 // code for Spotify API
 const axios = require('axios');
+const { generateKey } = require('crypto');
 let buff = new Buffer.from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`);
 let authKey = buff.toString('base64');
 let headers = {
@@ -57,7 +58,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
 
 // controllers
 app.use('/auth', require('./controllers/auth'));
-// app.use(require('./controllers/api'));
+app.use('/genre', require('./controllers/genre'));
 
 app.get('/test-albums', function (req, res) {
   // Make a AXIOS call (POST) to submit CLIENT_ID and CLIENT_SECRET
@@ -75,27 +76,27 @@ app.get('/test-albums', function (req, res) {
         }
       }
       // make another axios (GET) to get the data 
-      axios.get('https://api.spotify.com/v1/playlists/37i9dQZF1DX0XUsuxWHRQd', config)
+      axios.get('https://api.spotify.com/v1/artists/2CIMQHirSU0MQqyYHq0eOx', config)
         .then(function (response) {
           console.log('DATA YAY!', response.data);
           res.json({ data: response.data });
-          let alldata = response.data;
+          // let alldata = response.data;
           // console.log(alldata);
-          tracksArr = alldata.tracks.items;
+          // tracksArr = alldata.tracks.items;
           // console.log(tracksArr)
 
-          for (let i = 0; i < tracksArr.length; i++) {
-            let artistsArrs = tracksArr[i].track.album.artists;
+          // for (let i = 0; i < tracksArr.length; i++) {
+          //   let artistsArrs = tracksArr[i].track.album.artists;
 
-            for (let j in artistsArrs) {
-              let artistDetails = artistsArrs[j];
-              artistName = artistDetails.name;
-              artistIDs = artistDetails.id;
-              // console.log(artistName);
-              console.log(artistIDs);
-            }
+          //   for (let j in artistsArrs) {
+          //     let artistDetails = artistsArrs[j];
+          //     artistName = artistDetails.name;
+          //     artistIDs = artistDetails.id;
+          // console.log(artistName);
+          // console.log(artistIDs);
+          // }
 
-          }
+          // }
           // res.render('whateverpage', { data: response.data });
         })
         .catch(err => {
@@ -109,6 +110,17 @@ app.get('/test-albums', function (req, res) {
     })
 });
 
+
+// Genre.create({
+//   genre: 'Pop'
+// })
+//   .then(function (newGenre) {
+//     console.log("New genre added");
+//     console.log(newGenre.toJSON());
+//   })
+//   .catch(function (error) {
+//     console.log("Error creating genre", error);
+//   });
 
 
 const PORT = process.env.PORT || 3000;
