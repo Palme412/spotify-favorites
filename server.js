@@ -78,7 +78,7 @@ app.get('/test-albums', function (req, res) {
       // make another axios (GET) to get the data 
       axios.get('https://api.spotify.com/v1/artists/2CIMQHirSU0MQqyYHq0eOx', config)
         .then(function (response) {
-          console.log('DATA YAY!', response.data);
+          // console.log('DATA YAY!', response.data);
           res.json({ data: response.data });
           // let alldata = response.data;
           // console.log(alldata);
