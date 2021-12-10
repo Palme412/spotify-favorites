@@ -60,6 +60,9 @@ app.get('/profile', isLoggedIn, (req, res) => {
 app.use('/auth', require('./controllers/auth'));
 app.use('/genre', require('./controllers/genre'));
 app.use('/rap', require('./controllers/rap'));
+app.use('/rock', require('./controllers/rock'));
+app.use('/pop', require('./controllers/pop'));
+app.use('/country', require('./controllers/country'));
 
 app.get('/test-albums', function (req, res) {
   // Make a AXIOS call (POST) to submit CLIENT_ID and CLIENT_SECRET

@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { Country } = require('../models');
+const { Rock } = require('../models');
 
 router.get('/', function (req, res) {
-    Country.findAll()
-        .then(function (countryList) {
-            res.render('country/index', { country: countryList })
+    Rock.findAll()
+        .then(function (rockList) {
+            res.render('rock/index', { rock: rockList })
         })
         .catch(function (err) {
             console.log('ERROR', err);

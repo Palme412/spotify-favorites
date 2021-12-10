@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { Country } = require('../models');
+const { Pop } = require('../models');
 
 router.get('/', function (req, res) {
-    Country.findAll()
-        .then(function (countryList) {
-            res.render('country/index', { country: countryList })
+    Pop.findAll()
+        .then(function (popList) {
+            res.render('pop/index', { pop: popList })
         })
         .catch(function (err) {
             console.log('ERROR', err);
