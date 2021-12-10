@@ -9,8 +9,7 @@ const isLoggedIn = require('./middleware/isLoggedIn');
 const querystring = require('querystring');
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
-const { Genre } = require("./models");
-const { Rap } = require("./models");
+const { Genre, Rap, Country, Pop, Rock } = require("./models");
 const SECRET_SESSION = process.env.SECRET_SESSION;
 console.log(SECRET_SESSION);
 
@@ -113,16 +112,16 @@ app.get('/test-albums', function (req, res) {
 });
 
 
-Rap.create({
-  playlists: 'DOPE.'
-})
-  .then(function (newGenre) {
-    console.log("New genre added");
-    console.log(newGenre.toJSON());
-  })
-  .catch(function (error) {
-    console.log("Error creating genre", error);
-  });
+// Pop.create({
+//   playlists: 'Pumped Pop'
+// })
+//   .then(function (newGenre) {
+//     console.log("New genre added");
+//     console.log(newGenre.toJSON());
+//   })
+//   .catch(function (error) {
+//     console.log("Error creating genre", error);
+//   });
 
 
 const PORT = process.env.PORT || 3000;
