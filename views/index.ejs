@@ -1,1 +1,26 @@
-<h2>Homepage</h2>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick A Genre</title>
+</head>
+
+<body>
+    <h1>Pick A Genre!</h1>
+    <a href="/country">Country</a>
+    <a href="/rock">Rock</a>
+    <a href="/rap">Rap</a>
+    <a href="/pop">Pop</a>
+    <% if (!currentUser) { %>
+        <li><a href="/auth/signup">Signup</a></li>
+        <li><a href="/auth/login">Login</a></li>
+        <% } else { %>
+            <li><a href="/auth/logout">Logout</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <% } %>
+</body>
+
+</html>

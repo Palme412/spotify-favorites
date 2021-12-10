@@ -51,18 +51,19 @@ app.get('/', (req, res) => {
 })
 
 // Add this above /auth controllers
-app.get('/profile', isLoggedIn, (req, res) => {
+app.get('/views/profile', isLoggedIn, (req, res) => {
   const { id, name, email } = req.user.get();
   res.render('profile', { id, name, email });
 });
 
 // controllers
 app.use('/auth', require('./controllers/auth'));
-app.use('/genre', require('./controllers/genre'));
+// app.use('/genre', require('./controllers/genre'));
 app.use('/rap', require('./controllers/rap'));
 app.use('/rock', require('./controllers/rock'));
 app.use('/pop', require('./controllers/pop'));
 app.use('/country', require('./controllers/country'));
+app.use('/profile', require('./controllers/profile'));
 
 app.get('/test-albums', function (req, res) {
   // Make a AXIOS call (POST) to submit CLIENT_ID and CLIENT_SECRET
