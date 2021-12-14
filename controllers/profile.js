@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require('../models');
+const isLoggedIn = require('../middleware/isLoggedIn');
 
-router.get('/', function (req, res) {
-    User.findAll()
-        .then(function (userList) {
-            // console.log('Found all profile', profileList);
-            res.render('profile/profile', { User: userList })
+router.get('/', isLoggedIn, function (req, res) {
+    User.findByPk(Number(req.user.id))
+        .then(function (User) {
+            User = User.toJSON();
+            res.render('profile/profile', { User })
         })
         .catch(function (err) {
             console.log('ERROR', err);
@@ -15,7 +16,7 @@ router.get('/', function (req, res) {
 });
 
 
-router.get('profile/edit', function (req, res) {
+router.get('/:id/edit', isLoggedIn, function (req, res) {
     let userIndex = Number(req.params.id);
     User.findByPk(userIndex)
         .then(function (User) {
@@ -33,13 +34,17 @@ router.get('profile/edit', function (req, res) {
 });
 
 
-router.post('profile/edit', function (req, res) {
+router.put('/:id/edit', isLoggedIn, function (req, res) {
     let userIndex = Number(req.params.id);
-    User.findByPk(userIndex)
-        .then(function (user) {
-            if (user) {
-                User = user.toJSON();
-                res.render('profile/profile', { User });
+    User.update({
+        name: req.body.name,
+        email: req.body.email
+    }, {
+        where: { id: userIndex }
+    })
+        .then(function (result) {
+            if (result) {
+                res.redirect('/profile')
             } else {
                 console.log("This profile does not exist");
                 res.render("404", { message: 'profile does not exist' });

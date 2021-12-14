@@ -1,9 +1,9 @@
-<form method="POST" action="/profile/edit">
+<form method="POST" action="/profile/<%= User.id %>/edit/?_method=PUT">
     <label for="name">Name</label>
-    <input type="text" name="name" value='<%= user.name %>'>
+    <input type="text" name="name" value='<%= User.name %>'>
 
     <label for="email">Email</label>
-    <input id="email" type="text" name="length" value='<%= user.email %>'>
+    <input id="email" type="text" name="length" value='<%= User.email %>'>
 
     <input type="submit">
 </form>
