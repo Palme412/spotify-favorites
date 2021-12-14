@@ -38,7 +38,6 @@ router.post('/signup', async (req, res) => {
         successRedirect: '/',
         successFlash: `Welcome ${user.name}. Account was created and logging in...`
       }
-      // 
       passport.authenticate('local', successObject)(req, res);
     } else {
       req.flash('error', 'Email already exists');
