@@ -8,7 +8,6 @@ const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const querystring = require('querystring');
 const methodOverride = require('method-override');
-app.use(methodOverride('_method'));
 const { Genre, Rap, Country, Pop, Rock } = require("./models");
 const SECRET_SESSION = process.env.SECRET_SESSION;
 console.log(SECRET_SESSION);
@@ -22,6 +21,7 @@ let headers = {
   Authorization: `Basic ${authKey}`
 }
 
+app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));

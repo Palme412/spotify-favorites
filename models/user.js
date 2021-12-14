@@ -13,10 +13,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.User.hasOne(models.UserProfile, { foreignKey: 'id' });
+      // models.User.hasOne(models.UserProfile, { foreignKey: 'id' });
     }
   };
   User.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
     name: {
       type: DataTypes.STRING,
       validate: {

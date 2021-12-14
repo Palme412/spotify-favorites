@@ -1,3 +1,81 @@
 h1 {
     text-align: center;
+    color: darkred;
+    margin-top: 25px;
+}
+
+body {
+    background-image: url('images/background.jpeg');
+    background-size: cover;
+}
+
+.corock {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+    margin: 50px;
+    margin-left: 250px;
+    width: 600px;
+    height: 325px;
+}
+.rapop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+    margin: 50px;
+    margin-left: 250px;
+    width: 600px;
+    height: 325px;
+}
+.country {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    width: 600px;
+    height: 375px;
+    margin: 10px;
+    position: relative;
+    color: white
+}
+.country a {
+    cursor: pointer;
+}
+.rock {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    width: 600px;
+    height: 375px;
+    margin: 10px;
+    position: relative;
+    color: white
+}
+.rock a {
+    cursor: pointer;
+}
+.pop {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    width: 600px;
+    height: 375px;
+    margin: 10px;
+    position: relative;
+    color: white
+}
+.pop a {
+    cursor: pointer;
+}
+.rap {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    width: 600px;
+    height: 375px;
+    margin: 10px;
+    position: relative;
+    color: white
+}
+.rap a {
+    cursor: pointer;
 }

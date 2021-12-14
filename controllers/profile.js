@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { Profile } = require('../models');
+const { User } = require('../models');
 
 router.get('/', function (req, res) {
-    Profile.findAll()
-        .then(function (profileList) {
+    User.findAll()
+        .then(function (userList) {
             // console.log('Found all profile', profileList);
-            res.render('profile/profile', { profile: profileList })
+            res.render('profile/profile', { User: userList })
         })
         .catch(function (err) {
             console.log('ERROR', err);
@@ -14,26 +14,46 @@ router.get('/', function (req, res) {
         });
 });
 
-// router.get('/new', function (req, res) {
-//     res.render('profiles/new');
-// });
 
-// router.get('/edit:id', function (req, res) {
-//     let profileIndex = Number(req.params.id);
-//     Profile.findByPk(profileIndex)
-//         .then(function (profile) {
-//             if (profile) {
-//                 profile = profile.toJSON();
-//                 res.render('profiles/edit', { profile });
-//             } else {
-//                 console.log("This profile does not exist");
-//                 res.render("404", { message: 'profile does not exist' });
-//             }
-//         })
-//         .catch(function (error) {
-//             console.log('Error', error);
-//         })
-// });
+
+
+
+// router post bio
+
+router.get('profile/edit', function (req, res) {
+    let userIndex = Number(req.params.id);
+    User.findByPk(userIndex)
+        .then(function (User) {
+            if (User) {
+                User = User.toJSON();
+                res.render('profile/edit', { User });
+            } else {
+                console.log("This user does not exist");
+                res.render("404", { message: 'User does not exist' });
+            }
+        })
+        .catch(function (error) {
+            console.log('Error', error);
+        })
+});
+
+
+router.post('/profile/edit', function (req, res) {
+    let userIndex = Number(req.params.id);
+    User.findByPk(userIndex)
+        .then(function (user) {
+            if (user) {
+                user = user.toJSON();
+                res.render('profile/profile', { user });
+            } else {
+                console.log("This profile does not exist");
+                res.render("404", { message: 'profile does not exist' });
+            }
+        })
+        .catch(function (error) {
+            console.log('Error', error);
+        })
+});
 
 // router.get('/:id', function (req, res) {
 //     // console.log('PARAMS', req.params);

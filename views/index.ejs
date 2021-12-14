@@ -11,10 +11,6 @@
 
 <body>
     <h1>Pick A Genre!</h1>
-    <a href="/country">Country</a>
-    <a href="/rock">Rock</a>
-    <a href="/rap">Rap</a>
-    <a href="/pop">Pop</a>
     <% if (!currentUser) { %>
         <li><a href="/auth/signup">Signup</a></li>
         <li><a href="/auth/login">Login</a></li>
@@ -22,6 +18,31 @@
             <li><a href="/auth/logout">Logout</a></li>
             <li><a href="/profile">Profile</a></li>
             <% } %>
+                <div class='corock'>
+                    <div class='country'>
+                        <a href="/country">
+                            <img src='images/country.jpg'>
+                        </a>
+                    </div>
+                    <div class='rock'>
+                        <a href="/rock">
+                            <img src='images/rock.jpeg'>
+                        </a>
+                    </div>
+                </div>
+                <div class='rapop'>
+                    <div class='rap'>
+                        <a href="/rap">
+                            <img src='images/rap.jpg'>
+                        </a>
+                    </div>
+                    <div class='pop'>
+                        <a href="/pop">
+                            <img src='images/pop.jpg'>
+                        </a>
+                    </div>
+                </div>
+
 </body>
 
 </html>
