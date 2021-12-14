@@ -1,25 +1,42 @@
-<h2 style="text-align:center;">Profile Page</h2>
+<!DOCTYPE html>
+<html lang="en">
 
-<h3 style="text-align:center;">Welcome to your PROFILE</h3>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+    <div class='profile'>
+        <h3 style="text-align:center;">Welcome to your PROFILE</h3>
 
 
+        <a class='genre' href='/'>Pick A Genre To Jam!</a><br>
+        <label for='Genre'>Favorite Genre</label>
+        <select name='Genre' id="Genre">
+            <option value="Country">Country</option>
+            <option value="Pop">Pop</option>
+            <option value="Rap">Rap</option>
+            <option value="Rock">Rock</option>
+        </select>
 
-<label for='Genre'>Favorite Genre</label>
-<select name='Genre' id="Genre">
-    <option value="Country">Country</option>
-    <option value="Pop">Pop</option>
-    <option value="Rap">Rap</option>
-    <option value="Rock">Rock</option>
-</select>
-<a href="/profile/<%= User.id %>/edit">Edit</a><br>
-<a class='genre' href='/'>Pick A Genre</a>
 
-<h1>
-    <%= User.name %>
-</h1>
-<h1>
-    <%= User.email %>
-</h1>
+        <h1>
+            <%= User.name %>
+        </h1>
+        <h1>
+            <%= User.email %>
+        </h1>
+        <a href="/profile/<%= User.id %>/edit">Edit Profile</a><br>
+    </div>
+</body>
+
+</html>
+
+
 
 <!-- crud implimentation
 user bio and picture
