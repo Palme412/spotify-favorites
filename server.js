@@ -58,62 +58,61 @@ app.get('/views/profile', isLoggedIn, (req, res) => {
 
 // controllers
 app.use('/auth', require('./controllers/auth'));
-// app.use('/genre', require('./controllers/genre'));
 app.use('/rap', require('./controllers/rap'));
 app.use('/rock', require('./controllers/rock'));
 app.use('/pop', require('./controllers/pop'));
 app.use('/country', require('./controllers/country'));
 app.use('/profile', require('./controllers/profile'));
 
-app.get('/test-albums', function (req, res) {
-  // Make a AXIOS call (POST) to submit CLIENT_ID and CLIENT_SECRET
-  axios.post('https://accounts.spotify.com/api/token',
-    querystring.stringify({ grant_type: 'client_credentials' }),
-    {
-      headers: headers
-    })
-    .then(function (response) {
-      token = response.data.access_token
-      console.log('TOKEN', token);
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-      // make another axios (GET) to get the data 
-      axios.get('https://api.spotify.com/v1/artists/2CIMQHirSU0MQqyYHq0eOx', config)
-        .then(function (response) {
-          // console.log('DATA YAY!', response.data);
-          res.json({ data: response.data });
-          // let alldata = response.data;
-          // console.log(alldata);
-          // tracksArr = alldata.tracks.items;
-          // console.log(tracksArr)
+// app.get('/test-albums', function (req, res) {
+//   // Make a AXIOS call (POST) to submit CLIENT_ID and CLIENT_SECRET
+//   axios.post('https://accounts.spotify.com/api/token',
+//     querystring.stringify({ grant_type: 'client_credentials' }),
+//     {
+//       headers: headers
+//     })
+//     .then(function (response) {
+//       token = response.data.access_token
+//       console.log('TOKEN', token);
+//       const config = {
+//         headers: {
+//           Authorization: `Bearer ${token}`
+//         }
+//       }
+// make another axios (GET) to get the data 
+// axios.get('https://api.spotify.com/v1/artists/2CIMQHirSU0MQqyYHq0eOx', config)
+// .then(function (response) {
+// console.log('DATA YAY!', response.data);
+// res.json({ data: response.data });
+// let alldata = response.data;
+// console.log(alldata);
+// tracksArr = alldata.tracks.items;
+// console.log(tracksArr)
 
-          // for (let i = 0; i < tracksArr.length; i++) {
-          //   let artistsArrs = tracksArr[i].track.album.artists;
+// for (let i = 0; i < tracksArr.length; i++) {
+//   let artistsArrs = tracksArr[i].track.album.artists;
 
-          //   for (let j in artistsArrs) {
-          //     let artistDetails = artistsArrs[j];
-          //     artistName = artistDetails.name;
-          //     artistIDs = artistDetails.id;
-          // console.log(artistName);
-          // console.log(artistIDs);
-          // }
+//   for (let j in artistsArrs) {
+//     let artistDetails = artistsArrs[j];
+//     artistName = artistDetails.name;
+//     artistIDs = artistDetails.id;
+// console.log(artistName);
+// console.log(artistIDs);
+// }
 
-          // }
-          // res.render('whateverpage', { data: response.data });
-        })
-        .catch(err => {
-          console.log('ERROR', err);
-        });
+// }
+// res.render('whateverpage', { data: response.data });
+//         })
+//         .catch(err => {
+//           console.log('ERROR', err);
+//         });
 
 
-    })
-    .catch(function (err) {
-      console.log("error", err.message)
-    })
-});
+//     })
+//     .catch(function (err) {
+//       console.log("error", err.message)
+//     })
+// });
 
 
 // Pop.create({

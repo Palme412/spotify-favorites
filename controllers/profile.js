@@ -15,11 +15,6 @@ router.get('/', function (req, res) {
 });
 
 
-
-
-
-// router post bio
-
 router.get('profile/edit', function (req, res) {
     let userIndex = Number(req.params.id);
     User.findByPk(userIndex)
@@ -38,13 +33,13 @@ router.get('profile/edit', function (req, res) {
 });
 
 
-router.post('/profile/edit', function (req, res) {
+router.post('profile/edit', function (req, res) {
     let userIndex = Number(req.params.id);
     User.findByPk(userIndex)
         .then(function (user) {
             if (user) {
-                user = user.toJSON();
-                res.render('profile/profile', { user });
+                User = user.toJSON();
+                res.render('profile/profile', { User });
             } else {
                 console.log("This profile does not exist");
                 res.render("404", { message: 'profile does not exist' });

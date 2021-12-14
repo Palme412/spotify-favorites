@@ -30,7 +30,7 @@ router.post('/signup', async (req, res) => {
   const { email, name, password } = req.body; // goes and us access to whatever key/value inside of the object
   try {
     const [user, created] = await User.findOrCreate({
-      where: { email, id },
+      where: { email },
       defaults: { name, password }
     });
     if (created) {
